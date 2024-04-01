@@ -3,3 +3,5 @@ __pycache__
 staticfiles
 mediafiles
 db.sqlite3
+
+note.md
