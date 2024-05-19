@@ -16,29 +16,31 @@ class LoginView(APIView):
         data = request.data
         serializer_obj = LoginSerializer(data=data)
 
-        if serializer_obj.is_valid():
-            username = serializer_obj.data["username"]
-            password = serializer_obj.data["password"]
+        serializer_obj.is_valid(raise_exception=True)
+        username = serializer_obj.data["username"]
+        password = serializer_obj.data["password"]
 
-            user = authenticate(username=username, password=password)
+        user = authenticate(username=username, password=password)
 
-            if not user:
-                return Response({"error": "Invalid Credentials"}, status=401)
+        if not user:
+            return Response({"error": "Invalid Credentials"}, status=401)
 
-            if not user.is_active:
-                return Response(
-                    {"error": "Your account is inactive. Please contact support!"},
-                    status=401,
-                )
+        if not user.is_active:
+            return Response(
+                {"error": "Your account is inactive. Please contact support!"},
+                status=401,
+            )
 
-            django_login(request, user)
+        is_2fa_required = True
+        
+        if is_2fa_required:
+            return Response({"message": "2FA authentication is required"})
+        else:
+            # Generate a auth code and send it to the user
             token, _ = Token.objects.get_or_create(user=user)
-
             response_data = UserAccountSerializer(user, context={"request": request}).data
             response_data["key"] = token.key
             return Response(response_data, status=200)
-
-        return Response(serializer_obj.errors, status=400)
 
 
 class UserInfo(APIView):
