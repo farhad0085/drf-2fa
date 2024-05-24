@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
-from django.contrib.auth import authenticate, login as django_login
+from django.contrib.auth import authenticate
 from user.serializers import *
 from user.models import *
 
@@ -34,7 +34,7 @@ class LoginView(APIView):
         is_2fa_required = True
         
         if is_2fa_required:
-            return Response({"message": "2FA authentication is required"})
+            return Response({"message": "2FA authentication is required", "code": "2FA_REQUIRED"}, status=401)
         else:
             # Generate a auth code and send it to the user
             token, _ = Token.objects.get_or_create(user=user)

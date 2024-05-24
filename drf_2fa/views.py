@@ -10,6 +10,7 @@ class VerifyOTPAPIView(APIView):
 
     def post(self, request):
         otp_backend = drf_2fa_settings.DEFAULT_OTP_BACKEND
+        print(request.data)
         otp = request.data.get("otp_key")
 
         verified = otp_backend().verify_otp(request.user, otp)
