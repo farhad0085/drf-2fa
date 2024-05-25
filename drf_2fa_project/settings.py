@@ -1,3 +1,4 @@
+import datetime
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,3 +91,11 @@ AUTH_USER_MODEL = "user.UserAccount" # Custom User Model
 CORS_ALLOW_ALL_ORIGINS = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+DRF_2FA_SETTINGS = {
+    "DEFAULT_OTP_BACKEND": "drf_2fa.backends.email.EmailOTPBackend",
+    "OTP_LENGTH": 8,
+    "OTP_EXPIRE": datetime.timedelta(seconds=86400),
+    "OTP_EMAIL_FROM": "noreply@gmail.com",
+}

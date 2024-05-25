@@ -9,7 +9,7 @@ import datetime
 
 
 DEFAULT_SETTINGS = {
-    "DEFAULT_OTP_BACKEND": "drf_2fa.backends.EmailOTPBackend",
+    "DEFAULT_OTP_BACKEND": "drf_2fa.backends.email.EmailOTPBackend",
     "OTP_LENGTH": 6,
     "OTP_EXPIRE": datetime.timedelta(seconds=86400),
     "OTP_EMAIL_FROM": settings.DEFAULT_FROM_EMAIL,

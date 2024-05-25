@@ -1,8 +1,6 @@
 import string, random
 from drf_2fa.models import OTPCode
 from drf_2fa.settings import drf_2fa_settings
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
 
 
 class BaseOTPBackend:
@@ -44,17 +42,3 @@ class BaseMessageOTPBackend(BaseOTPBackend):
         otp_code = self.save_otp(user)
         self.send_otp(user, otp_code)
 
-
-class EmailOTPBackend(BaseMessageOTPBackend):
-    """Send OTP in user's email"""
-
-    def send_otp(self, user, otp_code):
-        subject = render_to_string('drf_2fa/email/subject.txt')
-        email_content = render_to_string('drf_2fa/email/message.html', {'otp_code': otp_code})
-
-        send_mail(
-            subject=subject,
-            message=email_content,
-            from_email=drf_2fa_settings.OTP_EMAIL_FROM,
-            recipient_list=[user.email]
-        )
