@@ -1,9 +1,7 @@
-import { useEffect } from "react";
-import classes from "./authStyles.module.scss";
-import { setPageTitle } from "../../utils";
-
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import classes from "./styles.module.scss";
+import { setPageTitle } from "../../utils";
 import { login } from "../../store/actions/auth/authActions";
 
 

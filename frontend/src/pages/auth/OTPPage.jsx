@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import classes from "./authStyles.module.scss";
+import classes from "./styles.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { submitOtpCode } from "../../store/actions/auth/authActions";
 
