@@ -1,23 +1,28 @@
 import React from "react";
 import classes from "./styles.module.scss";
-import LayoutContainer from "../../components/layouts/LayoutContainer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/actions/auth/authActions";
 
 
-export default function Dashboard() {
+export default function Dashboard({ history }) {
+  const dispatch = useDispatch()
   const auth = useSelector((state) => state.auth);
 
 
   return (
-    <LayoutContainer>
-      <div className={classes.dashboard}>
-        <div className={classes.dashboard__header}>
-          <div className={classes.dashboard__header__texts}>
-            <h2>Welcome {auth?.user?.first_name}!</h2>
-            <p>Here is the overview of your business</p>
-          </div>
-        </div>
+    <div className={classes.dashboardWrapper}>
+      <div className={classes.content}>
+        <h2>Congratulations, {auth?.user?.first_name}!</h2>
+        <p>You've passed 2 Factor Authentication Successfully</p>
       </div>
-    </LayoutContainer>
+      <div>
+        <button
+          onClick={() => dispatch(logout(history))}
+          className={classes.logoutButton}
+        >
+          Logout
+        </button>
+      </div>
+    </div>
   );
 }

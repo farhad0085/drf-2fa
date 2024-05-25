@@ -1,13 +1,11 @@
 import React from "react";
 import classes from "./styles.module.scss";
 import { setPageTitle } from "../../utils";
-import LayoutContainer from "../../components/layouts/LayoutContainer";
 
 const AccessDenied = ({ history }) => {
   setPageTitle("Access denied");
 
   return (
-    <LayoutContainer>
       <div
         className={classes.container}
       >
@@ -19,7 +17,6 @@ const AccessDenied = ({ history }) => {
           <button onClick={() => history.push("/")}>Go Home</button>
         </div>
       </div>
-    </LayoutContainer>
   )
 };
 

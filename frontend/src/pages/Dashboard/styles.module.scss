@@ -1,34 +1,42 @@
-.dashboard {
+.dashboardWrapper {
   width: 100%;
-  padding: 0 1rem;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-  @media screen and (max-width: 768px) {
-    margin: 1rem 0;
-  }
-
-  &__header {
-    width: 100%;
+  .content {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.5rem 1rem 1rem;
+    flex-direction: column;
 
-    &__texts {
-      & h2 {
-        margin: 0;
-        color: #253542;
-        font-weight: 600;
-        font-size: 1.8rem;
-      }
-      & p {
-        margin: 0.1rem 0;
-        color: #8c8c8c;
-      }
+    & h2 {
+      margin: 0;
+      color: #253542;
+      font-weight: 600;
+      font-size: 1.8rem;
     }
 
-    @media screen and (max-width: 1100px) {
-      flex-direction: column;
+    & p {
+      margin: 0.1rem 0;
+      color: #8c8c8c;
     }
   }
+
+  .logoutButton {
+    color: #fff;
+    background: #02283a;
+    outline: none;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.5rem 2rem;
+    margin: 1rem 0;
+    border-radius: 25px;
+    width: 100%;
+    font-family: Roboto, sans-serif;
+    cursor: pointer;
+  }
+
 }

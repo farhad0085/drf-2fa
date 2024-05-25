@@ -8,15 +8,13 @@ export const login = (loginCreds, history) => (dispatch) => {
   dispatch({ type: Types.AUTH_LOADING });
   dispatch({ type: Types.USER_LOGIN_ERROR, payload: {} });
 
-  const url = "/";
-
   axios
     .post("/auth/login/", loginCreds)
     .then((res) => {
       localStorage.setItem(process.env.REACT_APP_TOKEN_KEY, res.data.key);
 
       dispatch({ type: Types.USER_LOGGED_IN });
-      history.push(url);
+      history.push("/");
       dispatch(loadUserInfo());
     })
     .catch((error) => {
@@ -25,7 +23,7 @@ export const login = (loginCreds, history) => (dispatch) => {
         payload: error.response ? error.response.data : {},
       });
       const code = error.response?.data?.code
-      if (code === "2FA_REQUIRED"){
+      if (code === "2FA_REQUIRED"){ // important
         history.push({
           pathname: OTP_REQUIRED_PAGE,
           state: loginCreds
@@ -38,15 +36,13 @@ export const submitOtpCode = (otpData, history) => dispatch => {
   dispatch({ type: Types.AUTH_LOADING });
   dispatch({ type: Types.USER_LOGIN_ERROR, payload: {} });
 
-  const url = "/";
-
   axios
     .post("/drf-2fa/verify-otp/", otpData)
     .then((res) => {
       localStorage.setItem(process.env.REACT_APP_TOKEN_KEY, res.data.api_token);
 
       dispatch({ type: Types.USER_LOGGED_IN });
-      history.push(url);
+      history.push("/");
       dispatch(loadUserInfo());
     })
     .catch((error) => {
@@ -58,21 +54,8 @@ export const submitOtpCode = (otpData, history) => dispatch => {
 }
 
 export const logout = (history) => (dispatch) => {
-  dispatch({ type: Types.AUTH_LOADING });
-
-  axios
-    .post("/auth/logout/", {}, { headers: getHeaders() })
-    .then((res) => {
-      localStorage.removeItem(process.env.REACT_APP_TOKEN_KEY);
-
-      dispatch({ type: Types.USER_LOGGED_OUT });
-    })
-    .catch((error) => {
-      dispatch({
-        type: Types.USER_LOGOUT_ERROR,
-        payload: error.response ? error.response.data : {},
-      });
-    });
+    localStorage.removeItem(process.env.REACT_APP_TOKEN_KEY);
+    dispatch({ type: Types.USER_LOGGED_OUT });
 };
 
 export const loadUserInfo = () => (dispatch) => {
@@ -80,13 +63,9 @@ export const loadUserInfo = () => (dispatch) => {
   axios
     .get("/auth/user/me/", { headers: getHeaders() })
     .then((res) => {
-      if (res.data.should_logout) {
-        dispatch(logout());
-      }
       dispatch({ type: Types.USER_LOGGED_IN, payload: res.data });
     })
     .catch((error) => {
-      //   console.log(error.response);
       localStorage.removeItem(process.env.REACT_APP_TOKEN_KEY);
       dispatch({ type: Types.USER_LOGGED_OUT });
     });

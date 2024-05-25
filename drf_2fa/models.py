@@ -45,6 +45,6 @@ class OTPCode(models.Model):
         otp_obj = cls.objects.filter(user=user, otp_code=otp_code).first()
 
         if not otp_obj:
-            return False
+            return False, None
         
         return not cls.is_expired(otp_obj), otp_obj
