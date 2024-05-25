@@ -8,8 +8,8 @@ from django.template.loader import render_to_string
 class BaseOTPBackend:
 
     def generate_otp(self):
-        self.otp_code = ''.join(random.choices(string.digits, k=drf_2fa_settings.OTP_LENGTH))
-        return self.otp_code
+        otp_code = ''.join(random.choices(string.digits, k=drf_2fa_settings.OTP_LENGTH))
+        return otp_code
 
     def verify_otp(self, user, otp):
         raise NotImplementedError(f"`{self.__class__.__name__}` backend must override `verify_otp` method")
@@ -38,19 +38,19 @@ class BaseMessageOTPBackend(BaseOTPBackend):
         otp_code = self.generate_otp()
         # save the otp to database
         OTPCode.objects.create(user=user, otp_code=otp_code)
-        return self.otp_code
+        return otp_code
 
     def save_and_send_otp_code(self, user):
-        self.save_otp(user)
-        self.send_otp(user)
+        otp_code = self.save_otp(user)
+        self.send_otp(user, otp_code)
 
 
 class EmailOTPBackend(BaseMessageOTPBackend):
     """Send OTP in user's email"""
-    
-    def send_otp(self, user):
+
+    def send_otp(self, user, otp_code):
         subject = render_to_string('drf_2fa/email/subject.txt')
-        email_content = render_to_string('drf_2fa/email/message.html', {'otp_code': self.otp_code})
+        email_content = render_to_string('drf_2fa/email/message.html', {'otp_code': otp_code})
 
         send_mail(
             subject=subject,
