@@ -5,10 +5,14 @@ Inspired by `djangorestframework` settings
 from django.conf import settings
 from django.test.signals import setting_changed
 from django.utils.module_loading import import_string
+import datetime
 
 
 DEFAULT_SETTINGS = {
-    "DEFAULT_OTP_BACKEND": "drf_2fa.backends.EmailOTPBackend"
+    "DEFAULT_OTP_BACKEND": "drf_2fa.backends.EmailOTPBackend",
+    "OTP_LENGTH": 6,
+    "OTP_EXPIRE": datetime.timedelta(seconds=86400),
+    "OTP_EMAIL_FROM": settings.DEFAULT_FROM_EMAIL,
 }
 
 # List of settings that may be in string import notation.

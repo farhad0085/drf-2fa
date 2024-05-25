@@ -15,7 +15,7 @@ const OTPPage = ({ history }) => {
     e.preventDefault();
 
     dispatch(submitOtpCode({
-      "otp_key": otpCode,
+      "otp_code": otpCode,
       "username": username,
       "password": password
     }, history));
@@ -26,6 +26,11 @@ const OTPPage = ({ history }) => {
       <div className={classes.Login__wrapper}>
         <form onSubmit={submitHandler} className={classes.Login__wrapper__content}>
           <h1>OTP Required</h1>
+          <small>
+            We've just sent an OTP (One-Time Password) to your email address.
+            Please check your inbox and enter the code here to proceed.
+            If you haven't received the email yet, please check your spam folder!
+          </small>
 
           <input
             type='number'

@@ -43,7 +43,7 @@ export const submitOtpCode = (otpData, history) => dispatch => {
   axios
     .post("/drf-2fa/verify-otp/", otpData)
     .then((res) => {
-      localStorage.setItem(process.env.REACT_APP_TOKEN_KEY, res.data.key);
+      localStorage.setItem(process.env.REACT_APP_TOKEN_KEY, res.data.api_token);
 
       dispatch({ type: Types.USER_LOGGED_IN });
       history.push(url);

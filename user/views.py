@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 from user.serializers import *
 from user.models import *
+from drf_2fa.signals import otp_required_signal
 
 
 class LoginView(APIView):
@@ -34,6 +35,7 @@ class LoginView(APIView):
         is_2fa_required = True
         
         if is_2fa_required:
+            otp_required_signal.send(sender=request, user=user)
             return Response({"message": "2FA authentication is required", "code": "2FA_REQUIRED"}, status=401)
         else:
             # Generate a auth code and send it to the user
