@@ -1,6 +1,7 @@
 django==3.2
 djangorestframework==3.12.2
 django-cors-headers==4.3.1
+python-dotenv==1.0.1
 qrcode==7.4.2
 setuptools==67.2.0
 twilio==9.1.0

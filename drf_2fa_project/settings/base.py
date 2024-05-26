@@ -1,11 +1,14 @@
-import datetime
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+import datetime
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = 'django-insecure-(izzlqu1-=nmj95b_s)5--r@)6b091i4dof7t3omh+&_(kyu!n'
-DEBUG = True
-ALLOWED_HOSTS = []
+ENV_PATH = os.path.join(BASE_DIR, ".env")
+load_dotenv(ENV_PATH)
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -104,3 +107,5 @@ DRF_2FA_SETTINGS = {
     "OTP_EMAIL_FROM": "noreply@gmail.com",
     "SHOW_OTP_MODEL_ADMIN": True,
 }
+
+from .admin import *
