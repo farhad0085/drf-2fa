@@ -8,6 +8,7 @@ class UserAccount(AbstractUser):
 
     username = None
     email = models.EmailField('Email address', unique=True)
+    phone_number = models.CharField(max_length=20, null=True, blank=True)
 
     objects = UserManager()
     USERNAME_FIELD = 'email'
