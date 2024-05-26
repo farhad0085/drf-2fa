@@ -5,6 +5,12 @@ from drf_2fa.settings import drf_2fa_settings
 
 class BaseOTPBackend:
 
+    def __init__(self):
+        self.settings = self.get_settings()
+    
+    def get_settings(self):
+        return drf_2fa_settings
+
     def generate_otp(self):
         otp_code = ''.join(random.choices(string.digits, k=drf_2fa_settings.OTP_LENGTH))
         return otp_code
@@ -16,7 +22,7 @@ class BaseOTPBackend:
         """store otp in database if required"""
         raise NotImplementedError(f"`{self.__class__.__name__}` backend must override `save_otp` method")
     
-    def send_otp(self, user):
+    def send_otp(self, user, otp_code):
         """This method is responsible to send the otp to user"""
         raise NotImplementedError(f"`{self.__class__.__name__}` backend must override `send_otp` method")
 

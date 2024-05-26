@@ -94,7 +94,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 DRF_2FA_SETTINGS = {
-    "DEFAULT_OTP_BACKEND": "drf_2fa.backends.email.EmailOTPBackend",
+    "DEFAULT_OTP_BACKEND": "drf_2fa.backends.twilio.TwilioSMSBackend",
     "OTP_LENGTH": 8,
     "OTP_EXPIRE": datetime.timedelta(seconds=86400),
     "OTP_EMAIL_FROM": "noreply@gmail.com",

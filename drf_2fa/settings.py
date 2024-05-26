@@ -10,6 +10,10 @@ import datetime
 
 DEFAULT_SETTINGS = {
     "DEFAULT_OTP_BACKEND": "drf_2fa.backends.email.EmailOTPBackend",
+    "TWILIO_ACCOUNT_SID": None,
+    "TWILIO_AUTH_TOKEN": None,
+    "TWILIO_NUMBER": None,
+    "PHONE_NUMBER_FIELD": 'phone_number', # the field in user model which contains user's phone number
     "OTP_LENGTH": 6,
     "OTP_EXPIRE": datetime.timedelta(seconds=86400),
     "OTP_EMAIL_FROM": settings.DEFAULT_FROM_EMAIL,
