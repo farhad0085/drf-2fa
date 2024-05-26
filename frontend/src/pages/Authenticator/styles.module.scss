@@ -1,0 +1,23 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  background-color: #02283a;
+  min-height: 100vh;
+  display: flex;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  .content {
+    color: rgb(202, 198, 198);
+
+    img {
+      background-color: white;
+    }
+  }
+
+}

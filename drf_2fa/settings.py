@@ -17,7 +17,8 @@ DEFAULT_SETTINGS = {
     "OTP_LENGTH": 6,
     "OTP_EXPIRE": datetime.timedelta(seconds=86400),
     "OTP_EMAIL_FROM": settings.DEFAULT_FROM_EMAIL,
-    "SHOW_OTP_MODEL_ADMIN": False
+    "SHOW_OTP_MODEL_ADMIN": False,
+    "QR_ISSUER_NAME": "DRF 2FA",
 }
 
 # List of settings that may be in string import notation.
