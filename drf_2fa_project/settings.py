@@ -99,4 +99,5 @@ DRF_2FA_SETTINGS = {
     "OTP_LENGTH": 8,
     "OTP_EXPIRE": datetime.timedelta(seconds=86400),
     "OTP_EMAIL_FROM": "noreply@gmail.com",
+    "SHOW_OTP_MODEL_ADMIN": True,
 }

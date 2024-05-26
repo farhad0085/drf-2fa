@@ -17,6 +17,7 @@ DEFAULT_SETTINGS = {
     "OTP_LENGTH": 6,
     "OTP_EXPIRE": datetime.timedelta(seconds=86400),
     "OTP_EMAIL_FROM": settings.DEFAULT_FROM_EMAIL,
+    "SHOW_OTP_MODEL_ADMIN": False
 }
 
 # List of settings that may be in string import notation.
