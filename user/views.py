@@ -45,9 +45,7 @@ class LoginView(APIView):
         else:
             # Generate a auth code and send it to the user
             token, _ = Token.objects.get_or_create(user=user)
-            response_data = UserAccountSerializer(user, context={"request": request}).data
-            response_data["api_token"] = token.key
-            return Response(response_data, status=200)
+            return Response({"message": "Login Successfully!", "api_token": token.key})
 
 
 class UserInfo(APIView):
