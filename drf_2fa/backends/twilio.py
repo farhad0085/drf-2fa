@@ -1,11 +1,12 @@
 from twilio.rest import Client
-from drf_2fa.backends import BaseMessageOTPBackend
+from drf_2fa.backends import SMSOTPBackend
 from twilio.base.exceptions import TwilioRestException
 from drf_2fa.exceptions import InvalidPhoneNumberField, SMSClientCouldNotCreate, SMSCouldNotSend
-from django.template.loader import render_to_string
 
 
-class TwilioSMSBackend(BaseMessageOTPBackend):
+class TwilioSMSBackend(SMSOTPBackend):
+
+    template_name = "drf_2fa/sms/message.txt"
     
     def get_twilio_client(self):
         try:
@@ -20,13 +21,10 @@ class TwilioSMSBackend(BaseMessageOTPBackend):
         except:
             raise InvalidPhoneNumberField
 
-    def get_message_body(self, otp_code):
-        return render_to_string('drf_2fa/sms/message.txt', {'otp_code': otp_code})
-
-    def send_otp(self, user, otp_code):
+    def send_otp(self, user):
         client = self.get_twilio_client()
         receiver_phone_number = self.get_receiver_phone_number(user)
-        message_body = self.get_message_body(otp_code)
+        message_body = self.get_message_content()
         try:
             client.messages.create(
                 to=receiver_phone_number,
