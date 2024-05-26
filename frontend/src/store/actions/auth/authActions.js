@@ -11,24 +11,24 @@ export const login = (loginCreds, history) => (dispatch) => {
   axios
     .post("/auth/login/", loginCreds)
     .then((res) => {
-      localStorage.setItem(process.env.REACT_APP_TOKEN_KEY, res.data.key);
-
-      dispatch({ type: Types.USER_LOGGED_IN });
-      history.push("/");
-      dispatch(loadUserInfo());
+      if (res.data.is_2fa_required) {
+        history.push({
+          pathname: OTP_REQUIRED_PAGE,
+          state: {userId: res.data.user_id}
+        })
+      }
+      else {
+        localStorage.setItem(process.env.REACT_APP_TOKEN_KEY, res.data.api_token);
+        dispatch({ type: Types.USER_LOGGED_IN });
+        history.push("/");
+        dispatch(loadUserInfo());
+      }
     })
     .catch((error) => {
       dispatch({
         type: Types.USER_LOGIN_ERROR,
         payload: error.response ? error.response.data : {},
       });
-      const code = error.response?.data?.code
-      if (code === "2FA_REQUIRED"){ // important
-        history.push({
-          pathname: OTP_REQUIRED_PAGE,
-          state: loginCreds
-        })
-      }
     });
 };
 

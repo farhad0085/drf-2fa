@@ -1,3 +1,4 @@
+from operator import is_
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.models import Token
@@ -36,12 +37,16 @@ class LoginView(APIView):
         
         if is_2fa_required:
             otp_required_signal.send(sender=request, user=user)
-            return Response({"message": "2FA authentication is required", "code": "2FA_REQUIRED"}, status=401)
+            return Response({
+                "message": "2FA authentication is required",
+                "user_id": user.id,
+                "is_2fa_required": is_2fa_required
+            })
         else:
             # Generate a auth code and send it to the user
             token, _ = Token.objects.get_or_create(user=user)
             response_data = UserAccountSerializer(user, context={"request": request}).data
-            response_data["key"] = token.key
+            response_data["api_token"] = token.key
             return Response(response_data, status=200)
 
 

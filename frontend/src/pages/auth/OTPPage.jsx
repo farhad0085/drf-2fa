@@ -9,15 +9,14 @@ const OTPPage = ({ history }) => {
   const auth = useSelector((state) => state.auth);
 
   const [otpCode, setOTPCode] = useState('');
-  const { username, password } = history.location.state
+  const { userId } = history.location.state
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     dispatch(submitOtpCode({
       "otp_code": otpCode,
-      "username": username,
-      "password": password
+      "user_id": userId,
     }, history));
   };
 
