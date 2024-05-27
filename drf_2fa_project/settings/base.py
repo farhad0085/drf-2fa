@@ -8,6 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 load_dotenv(ENV_PATH)
 
+DEBUG = True
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 INSTALLED_APPS = [
@@ -97,11 +98,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 DRF_2FA_SETTINGS = {
-    # "DEFAULT_OTP_BACKEND": "drf_2fa.backends.email.EmailOTPBackend",
-    "DEFAULT_OTP_BACKEND": "drf_2fa.backends.twilio.TwilioSMSBackend",
-    "TWILIO_ACCOUNT_SID": "",
-    "TWILIO_AUTH_TOKEN": "",
-    "TWILIO_NUMBER": "",
+    "DEFAULT_OTP_BACKEND": "drf_2fa.backends.email.EmailOTPBackend",
+    "TWILIO_ACCOUNT_SID": os.environ.get("TWILIO_ACCOUNT_SID", ""),
+    "TWILIO_AUTH_TOKEN": os.environ.get("TWILIO_AUTH_TOKEN", ""),
+    "TWILIO_NUMBER": os.environ.get("TWILIO_NUMBER", ""),
     "OTP_LENGTH": 8,
     "OTP_EXPIRE": datetime.timedelta(seconds=86400),
     "OTP_EMAIL_FROM": "noreply@gmail.com",
