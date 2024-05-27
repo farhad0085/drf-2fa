@@ -9,7 +9,6 @@ export default function Login({ history }) {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const [disable, setDisable] = useState(false);
   const [creds, setCreds] = useState({
     username: "",
     password: "",
@@ -17,7 +16,6 @@ export default function Login({ history }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setDisable(true);
 
     dispatch(login(creds, history));
   };
@@ -56,7 +54,7 @@ export default function Login({ history }) {
               value={creds.password}
               onChange={handleChange}
             />
-            <button disabled={disable}>
+            <button disabled={auth.loading}>
               {auth.loading ? "Please wait..." : "Login"}
             </button>
             {auth.loginErrors?.error && (
