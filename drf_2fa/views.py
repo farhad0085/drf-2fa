@@ -2,10 +2,11 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from drf_2fa.models import AuthSecret
-from drf_2fa.serializers import OTPCodeVerificationSerializer
+from drf_2fa.serializers import LoginSerializer, OTPCodeVerificationSerializer
 from drf_2fa.settings import drf_2fa_settings
+from drf_2fa.signals import otp_required_signal
 from rest_framework.authtoken.models import Token
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -56,3 +57,47 @@ class GetAuthSecretAPIView(APIView):
             "qr_code": obj.generate_qr_code()
         })
 
+
+class LoginAPIView(APIView):
+    """Class based view loggin in user and returning Auth Token."""
+
+    permission_classes = [AllowAny]
+    serializer_class = LoginSerializer
+
+    def get_serializer(self):
+        return self.serializer_class
+
+    def get_is_2fa_required(self, user):
+        return True
+
+    def post(self, request, format=None):
+        data = request.data
+        serializer = self.get_serializer()(data=data)
+
+        serializer.is_valid(raise_exception=True)
+        username = serializer.data["username"]
+        password = serializer.data["password"]
+
+        user = authenticate(username=username, password=password)
+
+        if not user:
+            return Response({"error": "Invalid Credentials"}, status=401)
+
+        if not user.is_active:
+            return Response(
+                {"error": "Your account is inactive. Please contact support!"},
+                status=401,
+            )
+
+        is_2fa_required = self.get_is_2fa_required(user)
+        if is_2fa_required:
+            otp_required_signal.send(sender=request, user=user)
+            return Response({
+                "message": "2FA authentication is required",
+                "user_id": user.id,
+                "is_2fa_required": is_2fa_required
+            })
+        else:
+            # Generate a auth code and send it to the user
+            token, _ = Token.objects.get_or_create(user=user)
+            return Response({"message": "Login Successfully!", "api_token": token.key})

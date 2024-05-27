@@ -9,7 +9,7 @@ export const login = (loginCreds, history) => (dispatch) => {
   dispatch({ type: Types.USER_LOGIN_ERROR, payload: {} });
 
   axios
-    .post("/auth/login/", loginCreds)
+    .post("/drf-2fa/login/", loginCreds)
     .then((res) => {
       if (res.data.is_2fa_required) {
         history.push({

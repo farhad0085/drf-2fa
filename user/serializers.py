@@ -6,11 +6,6 @@ from .models import *
 UserModel: UserAccount = get_user_model()
 
 
-class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
-    password = serializers.CharField()
-
-
 class UserAccountSerializer(serializers.ModelSerializer):
 
     class Meta:
