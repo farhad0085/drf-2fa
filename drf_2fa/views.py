@@ -38,6 +38,8 @@ class VerifyOTPAPIView(APIView):
 
 
 class GetAuthSecretAPIView(APIView):
+    """Get auth secret for authenticator app"""
+    
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
