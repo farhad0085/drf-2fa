@@ -1,0 +1,32 @@
+site_name: DRF 2Factor Authentication
+site_description: Integrate 2 Factor Authentication in Your Django REST API project easily.
+site_author: Farhad Hossain
+copyright: © 2024, Farhad Hossain
+
+repo_url: https://github.com/farhad0085/drf-2fa
+
+nav:
+    - Home: index.md
+    - Installation: installation.md
+    - Configuration: configuration.md
+    - API Reference: backends.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        # See: https://mkdocstrings.github.io/python/usage/
+        python:
+          options:
+            docstring_style: sphinx
+
+theme:
+  name: readthedocs
+  highlightjs: true
+
+markdown_extensions:
+  smarty: {}
+  toc:
+    permalink: true
+  sane_lists: {}

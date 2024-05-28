@@ -1,2 +1,3 @@
 -r ../requirements.txt
-myst-parser
+mkdocs
+mkdocstrings[python]
