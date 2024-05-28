@@ -59,7 +59,6 @@ class GetAuthSecretAPIView(APIView):
 
 
 class LoginAPIView(APIView):
-    """Class based view loggin in user and returning Auth Token."""
 
     permission_classes = [AllowAny]
     serializer_class = LoginSerializer
