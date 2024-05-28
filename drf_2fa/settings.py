@@ -9,7 +9,7 @@ import datetime
 
 
 DEFAULT_SETTINGS = {
-    "DEFAULT_OTP_BACKEND": "drf_2fa.backends.email.EmailOTPBackend",
+    "OTP_BACKEND": "drf_2fa.backends.email.EmailOTPBackend",
     "TWILIO_ACCOUNT_SID": None,
     "TWILIO_AUTH_TOKEN": None,
     "TWILIO_NUMBER": None,
@@ -23,7 +23,7 @@ DEFAULT_SETTINGS = {
 
 # List of settings that may be in string import notation.
 IMPORT_STRINGS = [
-    'DEFAULT_OTP_BACKEND',
+    'OTP_BACKEND',
 ]
 
 def perform_import(val, setting_name):
@@ -58,7 +58,7 @@ class Settings:
     properties. For example:
 
         from drf_2fa.settings import drf_2fa_settings
-        print(drf_2fa_settings.DEFAULT_OTP_BACKEND)
+        print(drf_2fa_settings.OTP_BACKEND)
 
     Any setting with string import paths will be automatically resolved
     and return the class, rather than the string literal.

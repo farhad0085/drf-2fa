@@ -17,7 +17,7 @@ class VerifyOTPAPIView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        otp_backend = drf_2fa_settings.DEFAULT_OTP_BACKEND()
+        otp_backend = drf_2fa_settings.OTP_BACKEND()
 
         serializer = OTPCodeVerificationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

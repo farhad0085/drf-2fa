@@ -8,3 +8,8 @@ db.sqlite3
 .env
 
 note.md
+
+# build
+*.egg-info
+dist
+build
