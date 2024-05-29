@@ -1,10 +1,10 @@
 # API Reference
 
-## OTP Backends
-::: drf_2fa.backends
-
-::: drf_2fa.backends.email
-
-::: drf_2fa.backends.twilio
-
-::: drf_2fa.backends.authenticator
+- [Exception](./api/exceptions.md)
+- [Signal](./api/signals.md)
+- [Serializer](./api/serializers.md)
+- OTP Backend
+    - [Base](./api/backends/base.md)
+    - [Email](./api/backends/email.md)
+    - [Twilio SMS](./api/backends/twilio.md)
+    - [Authenticator App](./api/backends/authenticator.md)
