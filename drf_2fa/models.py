@@ -60,7 +60,7 @@ class OTPCode(models.Model):
     @classmethod
     def is_valid(cls, user, otp_code):
         # check if otp is valid, and not expired
-        otp_obj = cls.objects.filter(user=user, otp_code=otp_code).first()
+        otp_obj = cls.objects.filter(user=user, otp_code=otp_code).order_by('-created_at').first()
 
         if not otp_obj:
             return False, None

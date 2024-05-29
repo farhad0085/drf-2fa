@@ -10,7 +10,7 @@ README = (BASE_PATH / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="drf-2fa",
-    version="1.0.2",
+    version="1.0.3",
     description="Integrate 2 Factor Authentication in Your Django REST API project easily.",
     long_description=README,
     long_description_content_type="text/markdown",

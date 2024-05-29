@@ -68,6 +68,14 @@ class LoginAPIView(APIView):
 
     def get_is_2fa_required(self, user):
         return True
+    
+    def get_api_token(self, user):
+        """
+        Generate an api key and send it to the user
+        It can be JWT/Token based on your DRF integration
+        """
+        token, _ = Token.objects.get_or_create(user=user)
+        return token.key
 
     def post(self, request, format=None):
         data = request.data
@@ -97,6 +105,5 @@ class LoginAPIView(APIView):
                 "is_2fa_required": is_2fa_required
             })
         else:
-            # Generate a auth code and send it to the user
-            token, _ = Token.objects.get_or_create(user=user)
-            return Response({"message": "Login Successfully!", "api_token": token.key})
+            api_token = self.get_api_token(user)
+            return Response({"message": "Login Successfully!", "api_token": api_token})
