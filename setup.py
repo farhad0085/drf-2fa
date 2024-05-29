@@ -10,7 +10,7 @@ README = (BASE_PATH / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="drf-2fa",
-    version="1.0.1",
+    version="1.0.2",
     description="Integrate 2 Factor Authentication in Your Django REST API project easily.",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -26,7 +26,7 @@ setup(
     packages=["drf_2fa", "drf_2fa/migrations", "drf_2fa/backends"],
     package_data={'drf_2fa': ['templates/**/**/*.*']},
     include_package_data=True,
-    install_requires=[],
+    install_requires=["qrcode==7.4.2", "django>=2.2", "djangorestframework>=3.14"],
 )
 
 # build

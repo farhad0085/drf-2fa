@@ -1,6 +1,6 @@
 # Configuration
 
-In your django `settings` module, add following settings.
+To set up `DRF 2FA` in your Django project, add the following settings to your settings.py module:
 
 ```python
 DRF_2FA_SETTINGS = {
@@ -9,4 +9,4 @@ DRF_2FA_SETTINGS = {
 }
 ```
 
-For full settings options, please refer to [Settings](./settings.md)
+For a comprehensive list of all available settings options, please refer to the [Settings Documentation](./settings.md)

@@ -1,9 +1,10 @@
 # Settings
 
 ## OTP_BACKEND
-OTP Backend to use, for list of supported OTP backend, please refer to [API Reference](./backends.md)
+Choose the OTP backend to use. For a list of supported OTP backends, please refer to the [API Reference](./backends.md)
 
-> **_NOTE:_** currently we support one otp method per project
+> **_NOTE:_** Currently, only one OTP method per project is supported.
+
 
 | Type      |      Default                              | Required                             |
 |-----------|-------------------------------------------| ------------------------------------ |
@@ -11,51 +12,49 @@ OTP Backend to use, for list of supported OTP backend, please refer to [API Refe
 
 
 ## TWILIO_ACCOUNT_SID
-Your Twilio account SID, You can get this credentials in your twilio console.
+Your Twilio account SID. You can find this credential in your Twilio console.
 
 | Type      |      Default                              | Required                                              |
 | --------- | ----------------------------------------- | ----------------------------------------------------- |
 | string    | `None`                                    |Yes, if `TwilioSMSBackend` is selected in `OTP_BACKEND`|
 
 ## TWILIO_AUTH_TOKEN
-Your Twilio auth token, You can get this credentials in your twilio console.
+Your Twilio auth token. You can find this credential in your Twilio console.
 
 | Type      |      Default                              | Required                                              |
 | --------- | ----------------------------------------- | ----------------------------------------------------- |
 | string    | `None`                                    |Yes, if `TwilioSMSBackend` is selected in `OTP_BACKEND`|
 
 ## TWILIO_NUMBER
-Your Twilio phone number, You can get this credentials in your twilio console. This phone number will be used for sms sender.
+Your Twilio phone number. You can find this credential in your Twilio console. This phone number will be used as the SMS sender.
 
 | Type      |      Default                              | Required                                              |
 | --------- | ----------------------------------------- | ----------------------------------------------------- |
 | string    | `None`                                    |Yes, if `TwilioSMSBackend` is selected in `OTP_BACKEND`|
 
 ## PHONE_NUMBER_FIELD
-The field in `User` model which contains user's phone number. If you've phone number saved in any other model,
-ignore this settings. Simply subclass `TwilioSMSBackend`, and override `get_receiver_phone_number` method.
-Phone number returned from this method will receive OTP sms
+The field in the User model that contains the user's phone number. If the phone number is saved in any other model, ignore this setting. Simply subclass `TwilioSMSBackend` and override the `get_receiver_phone_number` method. The phone number returned from this method will receive the OTP SMS.
 
 | Type      |      Default                              | Required                                              |
 | --------- | ----------------------------------------- | ----------------------------------------------------- |
 | string    | `phone_number`                            |Yes, if `TwilioSMSBackend` is selected in `OTP_BACKEND`|
 
 ## OTP_LENGTH
-Length of OTP, used only if you use an email/sms otp backend.
+The length of OTP, used only if you are using an email/SMS OTP backend.
 
 | Type      |      Default                              | Required                                              |
 | --------- | ----------------------------------------- | ----------------------------------------------------- |
 | integer   | 6                                         | No                                                    |
 
 ## OTP_EXPIRE
-Define after how long, the OTP will be expired. Used only if you use an email/sms otp backend.
+Defines after how long the OTP will expire. Used only if you are using an email/SMS OTP backend.
 
 | Type      |      Default                              | Required                                              |
 | --------- | ----------------------------------------- | ----------------------------------------------------- |
 | timedelta | `datetime.timedelta(seconds=86400)`       | No                                                    |
 
 ## OTP_EMAIL_FROM
-For an email otp backend, specify the sender email. Used only in email otp backends.
+For an email OTP backend, specify the sender's email. Used only in email OTP backends.
 
 | Type      |      Default                              | Required                                              |
 | --------- | ----------------------------------------- | ----------------------------------------------------- |
@@ -69,7 +68,7 @@ Set to True if you want to see `drf_2fa` model's admins in your admin site.
 | boolean   | `False`                                   | No                                                    |
 
 ## QR_ISSUER_NAME
-QR issuer name, used in third party authenticator app, for displaying the site name. Specify this setting to match it with your app name.
+The QR issuer name, used in third-party authenticator apps to display the site name. Specify this setting to match it with your app name.
 
 | Type      |      Default                              | Required                                              |
 | --------- | ----------------------------------------- | ----------------------------------------------------- |

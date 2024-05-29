@@ -7,7 +7,7 @@ Integrate 2 Factor Authentication in Your Django REST API project easily.
     - Twilio
 - Third party Authenticator App authentication
 - Ability to skip/disable 2fa on current device (In Progress)
-- Ability to have multiple authentication method (In Progress)
+- Ability to use multiple authentication methods (In Progress)
 
 ## Documentation
 - [Installation](./installation.md)
@@ -15,3 +15,5 @@ Integrate 2 Factor Authentication in Your Django REST API project easily.
 - [Usage](./usage.md)
 - [Settings](./settings.md)
 - [API Reference](./backends.md)
+
+Implementing Two Factor Authentication has never been easier!
