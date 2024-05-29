@@ -16,6 +16,8 @@ class TwilioSMSBackend(SMSOTPBackend):
         return client
     
     def get_receiver_phone_number(self, user):
+        """Phone number returned from this method will receive OTP sms"""
+        
         try:
             return getattr(user, self.settings.PHONE_NUMBER_FIELD)
         except:

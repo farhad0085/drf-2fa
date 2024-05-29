@@ -10,7 +10,7 @@ README = (BASE_PATH / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="drf-2fa",
-    version="1.0.0",
+    version="1.0.1",
     description="Integrate 2 Factor Authentication in Your Django REST API project easily.",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -30,6 +30,7 @@ setup(
 )
 
 # build
+# update version name before building
 # python setup.py sdist bdist_wheel
 # upload to pypi
 # twine upload dist/*
