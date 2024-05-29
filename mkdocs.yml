@@ -12,7 +12,7 @@ nav:
     - Usage: usage.md
     - Customization: customization.md
     - Settings: settings.md
-    - API Reference: backends.md
+    - API Reference: api_reference.md
 
 plugins:
   - search

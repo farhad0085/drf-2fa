@@ -1,7 +1,7 @@
 # Settings
 
 ## OTP_BACKEND
-Choose the OTP backend to use. For a list of supported OTP backends, please refer to the [API Reference](./backends.md)
+Choose the OTP backend to use. For a list of supported OTP backends, please refer to the [API Reference](./api_reference.md)
 
 > **_NOTE:_** Currently, only one OTP method per project is supported.
 

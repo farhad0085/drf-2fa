@@ -15,6 +15,6 @@ Integrate 2 Factor Authentication in Your Django REST API project easily.
 - [Usage](./usage.md)
 - [Customization](./customization.md)
 - [Settings](./settings.md)
-- [API Reference](./backends.md)
+- [API Reference](./api_reference.md)
 
 Implementing Two Factor Authentication has never been easier!

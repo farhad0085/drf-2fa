@@ -67,6 +67,10 @@ class LoginAPIView(APIView):
         return self.serializer_class
 
     def get_is_2fa_required(self, user):
+        """
+        Determine if 2FA is required for the user.
+        Logic can be customized based on user attributes.
+        """
         return True
     
     def get_api_token(self, user):

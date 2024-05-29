@@ -33,5 +33,6 @@ class AuthenticatorAppOTPBackend(BaseOTPBackend):
         return self.get_totp_token(obj.secret) == otp
 
     def save_and_send_otp_code(self, user):
-        pass # since it's a authenticator app, no need to send otp to user
+        """since it's a authenticator app, no need to create otp, save it, send to user"""
+        pass
     
