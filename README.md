@@ -13,6 +13,7 @@ Integrate 2 Factor Authentication in Your Django REST API project easily.
 - [Installation](https://drf-2fa.readthedocs.io/en/latest/installation/)
 - [Configuration](https://drf-2fa.readthedocs.io/en/latest/configuration/)
 - [Usage](https://drf-2fa.readthedocs.io/en/latest/usage/)
+- [Customization](https://drf-2fa.readthedocs.io/en/latest/customization/)
 - [Settings](https://drf-2fa.readthedocs.io/en/latest/settings/)
 - [API Reference](https://drf-2fa.readthedocs.io/en/latest/backends/)
 
